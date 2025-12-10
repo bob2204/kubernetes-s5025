@@ -35,3 +35,9 @@ spec:
               secretKeyRef:
                 name: nginx-pass
                 key: PASSWORD
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          periodSeconds: 3
+          failureThreshold: 3
