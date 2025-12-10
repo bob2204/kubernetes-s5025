@@ -28,3 +28,15 @@ spec:
         ports:
           - containerPort: 80
             name: http
+        livenessProbe:
+          httpGet:
+            path: /livez
+            port: 80
+          periodSeconds: 5
+          failureThreshold: 4
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          periodSeconds: 2
+          failureThreshold: 3
