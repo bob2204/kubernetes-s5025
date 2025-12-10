@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  MSG: Micro TP n°5
+  PORT: "80"
+  VERSION: Dev
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: hello-env

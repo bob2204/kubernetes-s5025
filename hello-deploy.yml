@@ -17,3 +17,23 @@ spec:
       containers:
       - image: bob2606/hello-http:0.8.34
         name: hello-http
+        env:
+          - name: VERSION
+            valueFrom:
+              configMapKeyRef:
+                name: hello-env
+                key: VERSION
+          - name: PORT
+            valueFrom:
+              configMapKeyRef:
+                name: hello-env
+                key: PORT
+          - name: MSG
+            valueFrom:
+              configMapKeyRef:
+                name: hello-env
+                key: MSG
+          - name: NODENAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
