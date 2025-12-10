@@ -30,3 +30,8 @@ spec:
               configMapKeyRef:
                 name: nginx-env
                 key: JOURS
+          - name: PASS
+            valueFrom:
+              secretKeyRef:
+                name: nginx-pass
+                key: PASSWORD
