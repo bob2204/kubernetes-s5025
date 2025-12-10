@@ -25,3 +25,6 @@ spec:
         envFrom:
           - configMapRef:
               name: hello-env
+        ports:
+          - containerPort: 80
+            name: http
