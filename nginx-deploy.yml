@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    kubernetes.io/change-cause: version initiale
   labels:
     app: nginx
   name: nginx
@@ -16,11 +18,11 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: nginx:1.28
+      - image: nginx:1.29
         name: nginx
         env:
           - name: STAGE
-            value: Kubernetes
+            value: K8S
           - name: PODIP
             valueFrom:
               fieldRef:
@@ -39,11 +41,21 @@ spec:
           httpGet:
             path: /index.html
             port: 80
-          periodSeconds: 3
-          failureThreshold: 3
+          periodSeconds: 4
+          failureThreshold: 4
         livenessProbe:
           httpGet:
             path: /index.html
             port: 80
           periodSeconds: 10
           failureThreshold: 2
+        volumeMounts:
+          - name: html
+            mountPath: /usr/share/nginx/html
+            readOnly: true
+
+      volumes:
+        - name: html
+          hostPath:
+            path: /home/stagiaire/data
+            type: Directory
