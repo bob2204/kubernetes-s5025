@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       app: hello
+  serviceName: hello
   template:
     metadata:
       labels:
@@ -51,7 +52,7 @@ spec:
           httpGet:
             path: /livez
             port: 80
-          periodSeconds: 5
+          periodSeconds: 3
           failureThreshold: 5
         readinessProbe:
           httpGet:
