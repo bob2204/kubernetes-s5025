@@ -20,7 +20,7 @@ spec:
           command:
             - sh
             - -c
-            - echo "Coucou" > /mnt/status
+            - hostname > /mnt/status
           volumeMounts:
             - name: status
               mountPath: /mnt
@@ -58,6 +58,4 @@ spec:
 
       volumes:
         - name: status
-          hostPath:
-            path: /tmp/hello
-            type: DirectoryOrCreate
+          emptyDir:
