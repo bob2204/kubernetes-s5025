@@ -14,6 +14,17 @@ spec:
       labels:
         app: hello
     spec:
+      initContainers:
+        - name: status
+          image: busybox:1.28
+          command:
+            - sh
+            - -c
+            - echo "Coucou" > /mnt/status
+          volumeMounts:
+            - name: status
+              mountPath: /mnt
+              subPath: hello
       containers:
       - image: bob2606/hello-http:0.8.34
         name: hello-http
