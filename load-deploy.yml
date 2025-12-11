@@ -25,3 +25,8 @@ spec:
             do
               :
             done
+        resources:
+          limits:
+            cpu: 150m
+          requests:
+            cpu: 50m
