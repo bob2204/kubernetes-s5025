@@ -33,10 +33,20 @@ spec:
             path: /livez
             port: 80
           periodSeconds: 5
-          failureThreshold: 4
+          failureThreshold: 5
         readinessProbe:
           httpGet:
             path: /healthz
             port: 80
           periodSeconds: 2
           failureThreshold: 3
+        volumeMounts:
+          - name: status
+            mountPath: /var/lib/hello-http
+            subPath: hello
+
+      volumes:
+        - name: status
+          nfs:
+            server: 192.168.56.200
+            path: /
