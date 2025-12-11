@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  creationTimestamp: null
+  name: hello
+  namespace: hello
+spec:
+  hard:
+    limits.cpu: 300m
+    pods: "20"
+status: {}
