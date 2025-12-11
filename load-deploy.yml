@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: load
+  name: load
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: load
+  template:
+    metadata:
+      labels:
+        app: load
+    spec:
+      containers:
+      - image: busybox:1.28
+        name: busybox
+        command:
+          - sh
+          - -c
+          - |
+            while :
+            do
+              :
+            done
