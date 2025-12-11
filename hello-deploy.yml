@@ -58,6 +58,6 @@ spec:
 
       volumes:
         - name: status
-          nfs:
-            server: 192.168.56.200
-            path: /
+          hostPath:
+            path: /tmp/hello
+            type: DirectoryOrCreate
