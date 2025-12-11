@@ -53,9 +53,21 @@ spec:
           - name: html
             mountPath: /usr/share/nginx/html
             readOnly: true
+          - name: nginx-conf
+            mountPath: /etc/nginx/conf.d/
+      - image: php:8.2-fpm
+        name: php
+        volumeMounts:
+          - name: html
+            mountPath: /var/www/html
+            readOnly: true
+
 
       volumes:
         - name: html
           hostPath:
             path: /home/stagiaire/data
             type: Directory
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf
