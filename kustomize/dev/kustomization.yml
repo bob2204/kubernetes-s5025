@@ -1,0 +1,43 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../base
+  - ./dev-ns.yml
+
+namespace: dev
+namePrefix: dev-
+
+images:
+  - name: bob2606/hello-http
+    newTag: "0.8.33"
+
+labels:
+  - pairs:
+      env: dev
+    includeSelectors: true
+
+configMapGenerator:
+  - name: hello-env
+    envs:
+      - hello.env
+
+generatorOptions:
+  annotations:
+    type: Généré par Kustomize
+
+patches:
+  - path: limit-cpu.yml
+  - path: volumes.yml
+  - path: volumeMounts.yml
+
+replacements:
+  - source:
+      kind: ConfigMap
+      name: hello-env
+      fieldPath: data.PORT
+    targets:
+      - select:
+          kind: Deployment
+        fieldPaths:
+          - spec.template.spec.containers.0.ports.0.containerPort

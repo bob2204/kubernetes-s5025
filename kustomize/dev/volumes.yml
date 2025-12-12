@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+spec:
+  template:
+    spec:
+      volumes:
+        - name: status
+          nfs:
+            server: 192.168.56.200
+            path: /
